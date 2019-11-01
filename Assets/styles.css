@@ -1,32 +1,42 @@
+body {
+    background-image: url("./img/congruent_outline.png");
+    background-attachment: fixed;
+    color: #ffffff;
+    display: flex;
+}
+
+header {
+    align-items: center;
+}
 button {
-    color: white;
+    
     display: block;
     margin: 5px auto;
-    border: 3px solid gray;
-    background-color: green;
+    border: 3px solid white;
     border-radius: 4px;
-    font-family: 'Merriweather', serif;
+    font-family: 'Rokkitt', serif;
     text-align: center;
     font-size: 40pt;
     padding: 5px;
+    width: 900px;
 }
 
 #center {
+    color: white;   
     width: 480px;
     margin-left: auto;
     margin-right: auto;
+    border: 2px solid white;
+    height: 480px;
+    width: 900px;
 }
 textarea {
-    color: gray;
+    opacity: 0.2;
     font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    border: 2px solid gray;
-    
-    width: 100%;
-    max-width: 480px;
+    font-size: 10px;
+    color: black;
     height: 480px;
-    padding: 10px;
-    margin-top: 20px;
+    width: 900px;
 }
 
 footer {
