@@ -64,6 +64,12 @@ function processText(words, allNouns) {
     $("#text_input").text("");
     $("#text_input").append(newDiv);
     $("#text_input").attr("contenteditable", "false");
+    $(".nouny").unbind().click(function(){
+        console.log("Word clicked!");
+        var word = $(this).text();
+        var checkWord = stripPunctuation (word);
+        getPicture(checkWord);
+    })
 }
 
 $("#reset").on("click", function(){
@@ -80,3 +86,19 @@ function stripPunctuation (word) {
 
     // ["This", "text,", "is", "awesome"]
     //["This", "text", "is", "awesome"]
+
+function getPicture(word) {
+    var promise = picAPI.call(picKey, word);
+    promise.then(function (data){
+        console.log(data);
+        randItem = Math.floor((Math.random()*data.hits.length)) - 1
+        console.log(randItem);
+        imgUrl = data.hits[randItem].previewURL;
+        console.log(imgUrl);
+        var popupSpan = $("<span>").attr("class","popup");
+        var img = $("<img>").attr("src", imgUrl);
+        $("#text_input").children(".popup").remove();
+        popupSpan.append(img);
+        $("#text_input").append(popupSpan);
+    });
+}
