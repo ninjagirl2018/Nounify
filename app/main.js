@@ -8,7 +8,6 @@ $("#start").on("click", function () {
     var words = str.split(" ");
     var allNouns = [];
     var wordsCount = words.length;
-    console.log(`wordsCount = ${wordsCount}`)
 
     var counter = 0;
     var progress = 0;
@@ -33,20 +32,17 @@ $("#start").on("click", function () {
 
             if (counter < wordsCount-1) {
                 counter++;
-                console.log(counter);
-                console.log(words[counter]);
                 processWord(words[counter])}
             else {
-                console.log(allNouns);
                 processText(words, allNouns);
             }
                 
         })
+            progress = 100 * ((counter + 1)/wordsCount);
+            $(".progress").css("display", "visible");
+            $(".progress").css("width", progress + "%");
     }
     processWord(words[counter]);
-    progress = counter/wordsCount;
-
-    $(".progress").css.width = (100 * progress) + " %";
 })
    
 function processText(words, allNouns) {
@@ -64,7 +60,6 @@ function processText(words, allNouns) {
         }
         finalText += newWord;
     }
-    console.log(finalText);
     $("#text_input").text("");
     $("#text_input").append(newDiv);
     $("#text_input").attr("contenteditable", "false");
@@ -80,7 +75,4 @@ $("#reset").on("click", function(){
 function stripPunctuation (word) {
     var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
     return clearWord;
-} 
-
-    // ["This", "text,", "is", "awesome"]
-    //["This", "text", "is", "awesome"]
+}
