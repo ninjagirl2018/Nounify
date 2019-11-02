@@ -19,7 +19,6 @@ footer {
 }
 
 button {
-    box-shadow: 3px 3px gray;
     display: block;
     margin-bottom: 10px;
     margin-top: 15px;
@@ -32,8 +31,28 @@ button {
     font-size: 20pt;
     padding: 5px;
     width: 900px;
+    height: 50px;
     background-color: transparent;
     color: white;
+}
+
+.progress-bar {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    background-color: transparent;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    height: 50px;
+    width: 900px;
+    max-width: 100%;
+}
+
+.progress {
+    background: rgb(127, 56, 114);
+    border-radius: 3px;
+    height: 50px;
+    width: 40%;
 }
 
 textarea {
