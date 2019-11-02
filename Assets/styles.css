@@ -10,6 +10,18 @@ h1 {
     margin-bottom: 5px;
 }
 
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+ }
+
+
+    
+#placeholder {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 footer {
     align-items: center;
     color: white;
@@ -74,9 +86,47 @@ button:hover {
     width: 900px;
     color: white;
     border: 3px solid white;
+    display: flex;
 }
 
 .nouny {
     background-color: pink;
     color: black;
+}
+
+
+@media screen and (max-width: 500px) {
+    h1 {   
+        width: 90%; 
+        margin-bottom: 1rem;
+    }
+
+    #text_input {
+        height: 600px;
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    h1 {   
+        width: 90%; 
+        margin-bottom: 1rem;
+    }
+
+    #text_input {
+        height: 600px;
+        width: 550px;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    h1 {   
+        width: 90%; 
+        margin-bottom: 1rem;
+    }
+
+    #text_input {
+        height: 480px;
+        width: 900px;
+    }
 }
