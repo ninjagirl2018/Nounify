@@ -56,9 +56,10 @@ $("#quiz").on("click", function () {
     processWord(words[counter]);
     
     function replaceNoun() {
+    /* create for each loop or other way to compare hidden nouns with the answer input by user */    
     $("#quiz_input").show();
     $("#quiz_input").append('<input type="text" id="answer"></input><input type="submit">');
-    $(".nouny").hide();
+    $(".nouny").hide(); /*not working?*/
     if ($("#answer").val() == checkWord) {
     }
     else {}
