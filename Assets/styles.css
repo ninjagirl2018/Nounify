@@ -73,7 +73,7 @@ button {
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
-    background-color: transparent;
+    /* background-color: transparent; */
     font-family: "merriweather", "serif";
     font-size: 15px;
     height: 480px;
@@ -89,6 +89,56 @@ button {
 }
 
 
+.popup_parent {
+    position: relative;
+    /* display: inline-block; */
+    cursor: pointer;
+  }
+
+.popup {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -6rem;
+}
+
+/* Popup arrow */
+.popup::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class when clicking on the popup container (hide and show the popup) */
+  .popup.show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  }
+
+  /* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
 @media screen and (max-width: 500px) {
     h1 {   
         width: 90%; 
