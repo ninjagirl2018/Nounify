@@ -12,9 +12,7 @@ $("#quiz").on("click", function () {
         $("#text_input").attr("contenteditable", "true");
     }
 
-    else{
-    }
-
+    else {
     var str =  $("#text_input").text();
     var words = str.split(" ");
     var allNouns = [];
@@ -65,7 +63,8 @@ $("#quiz").on("click", function () {
     else {}
     }
     replaceNoun();
-})
+    }
+});
    
 function processText(words, allNouns) {
     finalText = "";
