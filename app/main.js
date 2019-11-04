@@ -10,7 +10,6 @@ $("#start").on("click", function () {
     var wordsCount = words.length;
 
     var counter = 0;
-    var progress = 0;
 
     function processWord(word) {
         var checkWord = stripPunctuation (word); 
@@ -38,9 +37,6 @@ $("#start").on("click", function () {
             }
                 
         })
-            progress = 100 * ((counter + 1)/wordsCount);
-            $(".progress").css("display", "visible");
-            $(".progress").css("width", progress + "%");
     }
     processWord(words[counter]);
 })

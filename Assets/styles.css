@@ -5,6 +5,8 @@ body {
 }
 
 h1 {
+    margin-left: auto;
+    margin-right: auto;
     font-size: 50pt;
     color: white;
     margin-bottom: 5px;
@@ -14,13 +16,10 @@ h1 {
     content:attr(data-text)
  }
 
-
-    
 #placeholder {
     margin-left: auto;
     margin-right: auto;
 }
-
 
 footer {
     align-items: center;
@@ -51,27 +50,6 @@ button {
 
 button:hover {
     cursor: pointer;
-}
-
-.progress-bar {
-    display: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -400px;
-    background: transparent;
-    border-radius: 3px;
-    height: 50px;
-    width: 800px;
-    max-width: 100%;
-}
-
-.progress {
-    background: rgb(127, 56, 114);
-    border-radius: 3px;
-    height: 50px;
-    width: 0%;
 }
 
 #text_input {
