@@ -8,7 +8,6 @@ $("#start").on("click", function () {
     var words = str.split(" ");
     var allNouns = [];
     var wordsCount = words.length;
-    console.log(`wordsCount = ${wordsCount}`)
 
     var counter = 0;
 
@@ -32,11 +31,8 @@ $("#start").on("click", function () {
 
             if (counter < wordsCount-1) {
                 counter++;
-                console.log(counter);
-                console.log(words[counter]);
                 processWord(words[counter])}
             else {
-                console.log(allNouns);
                 processText(words, allNouns);
             }
                 
@@ -60,7 +56,6 @@ function processText(words, allNouns) {
         }
         finalText += newWord;
     }
-    console.log(finalText);
     $("#text_input").text("");
     $("#text_input").append(newDiv);
     $("#text_input").attr("contenteditable", "false");
@@ -74,7 +69,7 @@ function processText(words, allNouns) {
 
 $("#reset").on("click", function(){
     $("#text_input").children().remove();
-    $("#text_input").text("Place your text here");
+    // $("#text_input").text("Place your text here");
     $("#text_input").attr("contenteditable", "true");
     });
 
