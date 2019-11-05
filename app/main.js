@@ -63,13 +63,13 @@ function processText(words, allNouns) {
         console.log("Word clicked!");
         var word = $(this).text();
         var checkWord = stripPunctuation (word);
-        getPicture(checkWord);
+        getPicture(checkWord, $(this));
     })
 }
 
 $("#reset").on("click", function(){
     $("#text_input").children().remove();
-    $("#text_input").text("Place your text here");
+    // $("#text_input").text("Place your text here");
     $("#text_input").attr("contenteditable", "true");
     });
 
@@ -82,18 +82,25 @@ function stripPunctuation (word) {
     // ["This", "text,", "is", "awesome"]
     //["This", "text", "is", "awesome"]
 
-function getPicture(word) {
+function getPicture(word, callerObject) {
+    var obj = callerObject;
     var promise = picAPI.call(picKey, word);
     promise.then(function (data){
         console.log(data);
-        randItem = Math.floor((Math.random()*data.hits.length)) - 1
+        randItem = Math.floor((Math.random()*(data.hits.length - 1)))
         console.log(randItem);
         imgUrl = data.hits[randItem].previewURL;
         console.log(imgUrl);
+        $(".popup_parent").remove();
+        var popupParent = $("<span>").attr("class","popup_parent");
         var popupSpan = $("<span>").attr("class","popup");
         var img = $("<img>").attr("src", imgUrl);
         $("#text_input").children(".popup").remove();
         popupSpan.append(img);
-        $("#text_input").append(popupSpan);
+        popupParent.append(popupSpan);
+        obj.append(popupParent);
+        var element = document.getElementsByClassName("popup")[0];
+        console.log("this is "+$(this));
+        element.classList.toggle("show");
     });
 }
