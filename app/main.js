@@ -1,5 +1,4 @@
-
-   var key = "39c214e56b670999aebe2b153dfa922be50aa77d";
+var key = "39c214e56b670999aebe2b153dfa922be50aa77d";
 
 var picKey = "14145304-25921bbb2bbadb686e5be30b3"; 
 
@@ -13,7 +12,7 @@ $("#start").on("click", function () {
     var progress = 0;
 
     function processWord(word) {
-        var checkWord = stripPunctuation (word); 
+        var checkWord = stripPunctuation(word); 
         var promise = owlAPI.call(key, checkWord);
         promise.fail(function(){
             counter++;
@@ -41,7 +40,6 @@ $("#start").on("click", function () {
         var progress = Math.floor(100 * (counter + 1)/wordsCount);
         if (progress !== 100) {
             $("#progressBar").css("display", "inline-block");
-            console.log(progress);
             $("#progressLoader").css("width", progress + "%");
         }
         else {
@@ -60,22 +58,16 @@ function processText(words, allNouns) {
             newWord = `<span class="nouny">${word}</span>`;
             newDiv.append($("<span>").attr("class","nouny").text(`${word} `));
         }
-        console.log(finalText);
-        $("#text_input").text("");
-        $("#text_input").append(newDiv);
-        $("#text_input").attr("contenteditable", "false");
-        $(".nouny").unbind().click(function(){
-            console.log("Word clicked!");
-            var word = $(this).text();
-            var checkWord = stripPunctuation (word);
-            getPicture(checkWord, $(this));
-        })
+        else {
+            newWord = word;
+            newDiv.append(`${word} `);
+        }
+        finalText += newWord;
     }
     $("#text_input").text("");
     $("#text_input").append(newDiv);
     $("#text_input").attr("contenteditable", "false");
     $(".nouny").unbind().click(function(){
-        console.log("Word clicked!");
         var word = $(this).text();
         var checkWord = stripPunctuation (word);
         getPicture(checkWord, $(this));
@@ -84,7 +76,6 @@ function processText(words, allNouns) {
 
 $("#reset").on("click", function(){
     $("#text_input").children().remove();
-    // $("#text_input").text("Place your text here");
     $("#text_input").attr("contenteditable", "true");
     });
 
@@ -99,11 +90,8 @@ function getPicture(word, callerObject) {
     var obj = callerObject;
     var promise = picAPI.call(picKey, word);
     promise.then(function (data){
-        console.log(data);
         randItem = Math.floor((Math.random()*(data.hits.length - 1)))
-        console.log(randItem);
         imgUrl = data.hits[randItem].previewURL;
-        console.log(imgUrl);
         $(".popup_parent").remove();
         var popupParent = $("<span>").attr("class","popup_parent");
         var popupSpan = $("<span>").attr("class","popup");
@@ -113,7 +101,6 @@ function getPicture(word, callerObject) {
         popupParent.append(popupSpan);
         obj.append(popupParent);
         var element = document.getElementsByClassName("popup")[0];
-        console.log("this is "+$(this));
         element.classList.toggle("show");
     });
 }
