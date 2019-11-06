@@ -85,7 +85,7 @@ $("#reset").on("click", function(){
 
 
 function stripPunctuation (word) {
-    var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"]/g,"");
+    var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"’”]/g,"");
     return clearWord;
 } 
 
