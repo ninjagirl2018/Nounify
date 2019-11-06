@@ -78,7 +78,6 @@ function requestAnswer(object) {
     $("#quiz_input").children().remove();
     $("#quiz_input").show();
     $("#quiz_input").append('<input type="text" id="answer"></input><input type="submit" id="submit_answer">');
-    //$(".nouny").hide(); /*not working?*/
     $("#submit_answer").click(function() {
         processAnswer(object);
     })
@@ -90,7 +89,7 @@ function processAnswer(object) {
     console.log($("#answer").val());
     if ($("#answer").val() === object.parent().attr("id")) {
         $("#goodjob").show();
-        setTimeout(function(){$("#goodjob").hide();}, 1000);
+        setTimeout(function(){$("#goodjob").hide();}, 2000);
         object.parent().append(`${object.parent().attr("id")} `);
         object.remove();
         $("#quiz_input").children().remove();
@@ -98,13 +97,13 @@ function processAnswer(object) {
     }
     else {
         $("#trynexttime").show();
-        setTimeout(function(){$("#trynexttime").hide();}, 1000);
+        setTimeout(function(){$("#trynexttime").hide();}, 2000);
 
 
     }
     if (!($(".quiz_pic").length)) {
         $("#alldone").show();
-        setTimeout(function(){$("#alldone").hide();}, 1000);
+        setTimeout(function(){$("#alldone").hide();}, 2000);
     }
 }
 
@@ -142,3 +141,11 @@ function showPicture(word, callerObject) {
         })
     });
 }
+
+
+$("#reset").on("click", function(){
+    $("#quiz_input").hide();
+    $("#goodjob").hide();
+    $("#trynexttime").hide();
+    $("#alldone").hide();
+    });
