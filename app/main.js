@@ -1,5 +1,4 @@
-
-   var key = "39c214e56b670999aebe2b153dfa922be50aa77d";
+var key = "39c214e56b670999aebe2b153dfa922be50aa77d";
 
 var picKey = "14145304-25921bbb2bbadb686e5be30b3"; 
 
@@ -59,16 +58,11 @@ function processText(words, allNouns) {
             newWord = `<span class="nouny">${word}</span>`;
             newDiv.append($("<span>").attr("class","nouny").text(`${word} `));
         }
-        console.log(finalText);
-        $("#text_input").text("");
-        $("#text_input").append(newDiv);
-        $("#text_input").attr("contenteditable", "false");
-        $(".nouny").unbind().click(function(){
-            console.log("Word clicked!");
-            var word = $(this).text();
-            var checkWord = stripPunctuation (word);
-            getPicture(checkWord, $(this));
-        })
+        else {
+            newWord = word;
+            newDiv.append(`${word} `);
+        }
+        finalText += newWord;
     }
     $("#text_input").text("");
     $("#text_input").append(newDiv);
