@@ -4,7 +4,7 @@ var key = "39c214e56b670999aebe2b153dfa922be50aa77d";
 var picKey = "14145304-25921bbb2bbadb686e5be30b3"; 
 
 $("#start").on("click", function () {
-    var str =  $("#text_input").text();
+    var str =  $("#text_input").text().trim();
     var words = str.split(" ");
     var allNouns = [];
     var wordsCount = words.length;
@@ -85,12 +85,10 @@ $("#reset").on("click", function(){
 
 
 function stripPunctuation (word) {
-    var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"]/g,"");
     return clearWord;
 } 
 
-    // ["This", "text,", "is", "awesome"]
-    //["This", "text", "is", "awesome"]
 
 function getPicture(word, callerObject) {
     var obj = callerObject;
