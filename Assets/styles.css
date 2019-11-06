@@ -45,6 +45,24 @@ button:hover {
     cursor: pointer;
 }
 
+#progressbar {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -200px;
+    width: 400px;
+    height: 30px;
+    background-color: white;
+}
+
+#progressLoader {
+    width: 0%;
+    height: 30px;
+    background-color: purple;
+}
+
 #text_input {
     text-align: left;
     padding: 10px;
