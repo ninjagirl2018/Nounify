@@ -1,4 +1,3 @@
-
 var key = "39c214e56b670999aebe2b153dfa922be50aa77d";
 
 var picKey = "14145304-25921bbb2bbadb686e5be30b3"; 

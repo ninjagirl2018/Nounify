@@ -129,6 +129,76 @@ button:hover {
     animation: fadeIn 1s
   }
 
+/*quizify answer response, the response that given to user after they sumbit the answer*/
+
+  #goodjob {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -200px;
+    width: 400px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.849);
+    color: gold;
+    font-size: 200%;
+  }
+
+  #trynexttime {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -200px;
+    width: 400px;
+    height: 30px;
+    background-color: black;
+    font-size: 200%;
+    color: red;
+  }
+
+  /*this response remind the user that they already finish all quizs produced, it will show together with the right answer response*/
+
+  #alldone {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -200px;
+    width: 400px;
+    height: 30px;
+    background-color: black;
+    font-size: 200%;
+  }
+
+/*text input area that show after clicking the picture*/
+
+  #answer{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid white;
+    border-radius: 4px;
+    font-family: 'Rokkitt', serif;
+    font-size: 20pt;
+    padding: 5px;
+    width: 460px;
+    height: 50px;
+    color: white;
+    background-color: transparent;
+  }
+
+/* for the "sumbit" button right next to the input area*/
+  #submit_answer {
+    border: 3px solid white;
+    border-radius: 4px;
+    font-family: 'Rokkitt', serif;
+    font-size: 20pt;
+    color: white;
+    background-color: transparent;
+  }
+
   /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
     from {opacity: 0;}
@@ -200,4 +270,5 @@ button:hover {
     
     button {
         width: 825px;
+ }
 }

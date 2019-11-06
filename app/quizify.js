@@ -5,6 +5,11 @@ var picKey = "14145304-25921bbb2bbadb686e5be30b3";
 var score = 0;
 
 $("#quiz_input").hide();
+$("#goodjob").hide();
+$("#trynexttime").hide();
+$("#alldone").hide();
+
+
 
 
 $("#quiz").on("click", function () {
@@ -52,6 +57,15 @@ $("#quiz").on("click", function () {
                 }
                     
             })
+        var progress = Math.floor(100 * (counter + 1)/wordsCount);
+        if (progress !== 100) {
+            $("#progressBar").css("display", "inline-block");
+            console.log(progress);
+            $("#progressLoader").css("width", progress + "%");
+        }
+        else {
+            $("#progressBar").css("display", "none");
+        }
     }
     processWord(words[counter]);
     }
@@ -64,7 +78,6 @@ function requestAnswer(object) {
     $("#quiz_input").children().remove();
     $("#quiz_input").show();
     $("#quiz_input").append('<input type="text" id="answer"></input><input type="submit" id="submit_answer">');
-    //$(".nouny").hide(); /*not working?*/
     $("#submit_answer").click(function() {
         processAnswer(object);
     })
@@ -75,18 +88,22 @@ function processAnswer(object) {
     console.log(object.parent().attr("id"));
     console.log($("#answer").val());
     if ($("#answer").val() === object.parent().attr("id")) {
-        console.log("Good job!");
+        $("#goodjob").show();
+        setTimeout(function(){$("#goodjob").hide();}, 2000);
         object.parent().append(`${object.parent().attr("id")} `);
         object.remove();
         $("#quiz_input").children().remove();
         $("#quiz_input").hide();
     }
     else {
-        console.log("try next time");
+        $("#trynexttime").show();
+        setTimeout(function(){$("#trynexttime").hide();}, 2000);
+
 
     }
     if (!($(".quiz_pic").length)) {
-        console.log("All done!");
+        $("#alldone").show();
+        setTimeout(function(){$("#alldone").hide();}, 2000);
     }
 }
 
@@ -124,3 +141,11 @@ function showPicture(word, callerObject) {
         })
     });
 }
+
+
+$("#reset").on("click", function(){
+    $("#quiz_input").hide();
+    $("#goodjob").hide();
+    $("#trynexttime").hide();
+    $("#alldone").hide();
+    });
