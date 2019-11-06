@@ -14,7 +14,6 @@ $("#start").on("click", function () {
 
     function processWord(word) {
         var checkWord = stripPunctuation(word); 
-        console.log(`checkWord is ${checkWord}`);
         var promise = owlAPI.call(key, checkWord);
         promise.fail(function(){
             counter++;
@@ -84,7 +83,6 @@ $("#reset").on("click", function(){
 
 function stripPunctuation (word) {
     var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"’”]/g,"");
-    console.log(`Function will return ${clearWord}`);
     return clearWord;
 } 
 

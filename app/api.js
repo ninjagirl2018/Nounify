@@ -3,7 +3,6 @@ var owlAPI = (function () {
     return {
         something: "",
         call: function(key, word){
-            console.log(word);
             return $.ajax({
             url: `https://owlbot.info/api/v3/dictionary/${word}`,
             beforeSend: function(xhr) {
