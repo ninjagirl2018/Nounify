@@ -2,7 +2,14 @@ var key = "39c214e56b670999aebe2b153dfa922be50aa77d";
 
 var picKey = "14145304-25921bbb2bbadb686e5be30b3"; 
 
+var score = 0;
+
 $("#quiz_input").hide();
+$("#goodjob").hide();
+$("#trynexttime").hide();
+$("#alldone").hide();
+
+
 
 
 $("#quiz").on("click", function () {
@@ -13,117 +20,125 @@ $("#quiz").on("click", function () {
     }
 
     else {
-    var str =  $("#text_input").text();
-    var words = str.split(" ");
-    var allNouns = [];
-    var wordsCount = words.length;
-    console.log(`wordsCount = ${wordsCount}`)
+        var str =  $("#text_input").text();
+        var words = str.split(" ");
+        var allNouns = [];
+        var wordsCount = words.length;
+        console.log(`wordsCount = ${wordsCount}`)
 
-    var counter = 0;
+        var counter = 0;
 
-    function processWord(word) {
-        var checkWord = stripPunctuation (word); 
-        var promise = owlAPI.call(key, checkWord);
-        promise.fail(function(){
-            counter++;
-            processWord(words[counter])
-        })
-        promise.then(function(data) {
-            var isNoun = false;
-            for (def of data.definitions) {
-                if (def.type === "noun") {
-                    isNoun = true;
-                }  
-            }
-            if (isNoun === true) {
-                allNouns.push(data.word);
-            }
-
-            if (counter < wordsCount-1) {
+        function processWord(word) {
+            var checkWord = stripPunctuation (word); 
+            var promise = owlAPI.call(key, checkWord);
+            promise.fail(function(){
                 counter++;
-                console.log(counter);
-                console.log(words[counter]);
-                processWord(words[counter])}
-            else {
-                console.log(allNouns);
-                processText(words, allNouns);
-            }
-                
-        })
+                processWord(words[counter])
+            })
+            promise.then(function(data) {
+                var isNoun = false;
+                for (def of data.definitions) {
+                    if (def.type === "noun") {
+                        isNoun = true;
+                    }  
+                }
+                if (isNoun === true) {
+                    allNouns.push(data.word);
+                }
+
+                if (counter < wordsCount-1) {
+                    counter++;
+                    console.log(counter);
+                    console.log(words[counter]);
+                    processWord(words[counter])}
+                else {
+                    console.log(allNouns);
+                    replaceNoun(words, allNouns);
+                }
+                    
+            })
+        var progress = Math.floor(100 * (counter + 1)/wordsCount);
+        if (progress !== 100) {
+            $("#progressBar").css("display", "inline-block");
+            console.log(progress);
+            $("#progressLoader").css("width", progress + "%");
+        }
+        else {
+            $("#progressBar").css("display", "none");
+        }
     }
     processWord(words[counter]);
-    
-    function replaceNoun() {
-    /* create for each loop or other way to compare hidden nouns with the answer input by user */    
-    $("#quiz_input").show();
-    $("#quiz_input").append('<input type="text" id="answer"></input><input type="submit">');
-    $(".nouny").hide(); /*not working?*/
-    if ($("#answer").val() == checkWord) {
-    }
-    else {}
-    }
-    replaceNoun();
     }
 });
-   
-function processText(words, allNouns) {
+
+    /* create for each loop or other way to compare hidden nouns with the answer input by user */    
+
+
+function requestAnswer(object) {
+    $("#quiz_input").children().remove();
+    $("#quiz_input").show();
+    $("#quiz_input").append('<input type="text" id="answer"></input><input type="submit" id="submit_answer">');
+    //$(".nouny").hide(); /*not working?*/
+    $("#submit_answer").click(function() {
+        processAnswer(object);
+    })
+
+}
+
+function processAnswer(object) {
+    console.log(object.parent().attr("id"));
+    console.log($("#answer").val());
+    if ($("#answer").val() === object.parent().attr("id")) {
+        $("#goodjob").show();
+        setTimeout(function(){$("#goodjob").hide();}, 1000);
+        object.parent().append(`${object.parent().attr("id")} `);
+        object.remove();
+        $("#quiz_input").children().remove();
+        $("#quiz_input").hide();
+    }
+    else {
+        $("#trynexttime").show();
+        setTimeout(function(){$("#trynexttime").hide();}, 1000);
+
+
+    }
+    if (!($(".quiz_pic").length)) {
+        $("#alldone").show();
+        setTimeout(function(){$("#alldone").hide();}, 1000);
+    }
+}
+
+function replaceNoun(words, allNouns) {
     finalText = "";
     newDiv = $("<div>").attr("id","updated_text");
     for (word of words) {
         var checkWord = stripPunctuation (word);
         if (allNouns.includes(checkWord)) {
-            newWord = `<span class="nouny">${word}</span>`;
-            newDiv.append($("<span>").attr("class","nouny").text(`${word} `));
+            var pic = $("<span>").attr({class: "pic_placeholder", id: checkWord});
+            newDiv.append(pic);
+            showPicture(checkWord, pic);
         }
         else {
-            newWord = word;
             newDiv.append(`${word} `);
         }
-        finalText += newWord;
     }
-    console.log(finalText);
     $("#text_input").text("");
     $("#text_input").append(newDiv);
     $("#text_input").attr("contenteditable", "false");
-    $(".nouny").unbind().click(function(){
-        console.log("Word clicked!");
-        var word = $(this).text();
-        var checkWord = stripPunctuation (word);
-        getPicture(checkWord, $(this));
-    })
 }
 
 
-
-function stripPunctuation (word) {
-    var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-    return clearWord;
-} 
-
-    // ["This", "text,", "is", "awesome"]
-    //["This", "text", "is", "awesome"]
-
-function getPicture(word, callerObject) {
+function showPicture(word, callerObject) {
     var obj = callerObject;
     var promise = picAPI.call(picKey, word);
     promise.then(function (data){
         console.log(data);
         randItem = Math.floor((Math.random()*(data.hits.length - 1)))
-        console.log(randItem);
         imgUrl = data.hits[randItem].previewURL;
-        console.log(imgUrl);
-        $(".popup_parent").remove();
-        var popupParent = $("<span>").attr("class","popup_parent");
-        var popupSpan = $("<span>").attr("class","popup");
-        var img = $("<img>").attr("src", imgUrl);
-        $("#text_input").children(".popup").remove();
-        popupSpan.append(img);
-        popupParent.append(popupSpan);
-        obj.append(popupParent);
-        var element = document.getElementsByClassName("popup")[0];
-        console.log("this is "+$(this));
-        element.classList.toggle("show");
+        var img = $("<img>").attr({src: imgUrl, class: "quiz_pic"});
+        obj.append(img);
+        $(".quiz_pic").unbind().click(function(){
+            requestAnswer($(this));
+        })
     });
 }
-
-
