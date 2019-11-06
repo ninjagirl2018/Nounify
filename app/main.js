@@ -13,7 +13,8 @@ $("#start").on("click", function () {
     var progress = 0;
 
     function processWord(word) {
-        var checkWord = stripPunctuation (word); 
+        var checkWord = stripPunctuation(word); 
+        console.log(`checkWord is ${checkWord}`);
         var promise = owlAPI.call(key, checkWord);
         promise.fail(function(){
             counter++;
@@ -41,7 +42,6 @@ $("#start").on("click", function () {
         var progress = Math.floor(100 * (counter + 1)/wordsCount);
         if (progress !== 100) {
             $("#progressBar").css("display", "inline-block");
-            console.log(progress);
             $("#progressLoader").css("width", progress + "%");
         }
         else {
@@ -70,7 +70,6 @@ function processText(words, allNouns) {
     $("#text_input").append(newDiv);
     $("#text_input").attr("contenteditable", "false");
     $(".nouny").unbind().click(function(){
-        console.log("Word clicked!");
         var word = $(this).text();
         var checkWord = stripPunctuation (word);
         getPicture(checkWord, $(this));
@@ -79,13 +78,13 @@ function processText(words, allNouns) {
 
 $("#reset").on("click", function(){
     $("#text_input").children().remove();
-    // $("#text_input").text("Place your text here");
     $("#text_input").attr("contenteditable", "true");
     });
 
 
 function stripPunctuation (word) {
     var clearWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"’”]/g,"");
+    console.log(`Function will return ${clearWord}`);
     return clearWord;
 } 
 
@@ -94,11 +93,8 @@ function getPicture(word, callerObject) {
     var obj = callerObject;
     var promise = picAPI.call(picKey, word);
     promise.then(function (data){
-        console.log(data);
         randItem = Math.floor((Math.random()*(data.hits.length - 1)))
-        console.log(randItem);
         imgUrl = data.hits[randItem].previewURL;
-        console.log(imgUrl);
         $(".popup_parent").remove();
         var popupParent = $("<span>").attr("class","popup_parent");
         var popupSpan = $("<span>").attr("class","popup");
@@ -108,7 +104,6 @@ function getPicture(word, callerObject) {
         popupParent.append(popupSpan);
         obj.append(popupParent);
         var element = document.getElementsByClassName("popup")[0];
-        console.log("this is "+$(this));
         element.classList.toggle("show");
     });
 }
