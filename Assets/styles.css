@@ -72,7 +72,7 @@ button:hover {
     /* background-color: transparent; */
     font-family: "merriweather", "serif";
     font-size: 15px;
-    height: 480px;
+    height: 800px;
     width: 900px;
     color: white;
     border: 3px solid white;
@@ -139,14 +139,14 @@ button:hover {
     from {opacity: 0;}
     to {opacity:1 ;}
   }
-@media screen and (max-width: 500px) {
+@media screen and (min-width: 400px) {
     h1 {   
         width: 90%; 
         margin-bottom: 1rem;
     }
 
     #text_input {
-        height: 600px;
+        height: 500px;
         width: 400px;
     }
 
@@ -155,19 +155,19 @@ button:hover {
     }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 550px) {
     h1 {   
         width: 90%; 
         margin-bottom: 1rem;
     }
 
     #text_input {
-        height: 600px;
-        width: 550px;
+        height: 400px;
+        width: 500px;
     }
 
     button {
-        width: 285px;
+        width: 525px;
     }
 }
 
@@ -178,11 +178,26 @@ button:hover {
     }
 
     #text_input {
-        height: 480px;
-        width: 900px;
+        height: 400px;
+        width: 650px;
     }
     
     button {
-        width: 365px;
+        width: 675px;
     }
+}
+
+@media screen and (min-width: 900px) {
+    h1 {   
+        width: 90%; 
+        margin-bottom: 1rem;
+    }
+
+    #text_input {
+        height: 400px;
+        width: 800px;
+    }
+    
+    button {
+        width: 825px;
 }
