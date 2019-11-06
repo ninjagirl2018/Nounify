@@ -89,6 +89,7 @@ function processAnswer(object) {
     console.log($("#answer").val());
     if ($("#answer").val() === object.parent().attr("id")) {
         $("#goodjob").show();
+        //Ada - fix the counter on this line once the styling is done
         setTimeout(function(){$("#goodjob").hide();}, 2000);
         object.parent().append(`${object.parent().attr("id")} `);
         object.remove();
@@ -97,13 +98,14 @@ function processAnswer(object) {
     }
     else {
         $("#trynexttime").show();
+        //Ada - fix the counter on this line
         setTimeout(function(){$("#trynexttime").hide();}, 2000);
 
 
     }
     if (!($(".quiz_pic").length)) {
         $("#alldone").show();
-        setTimeout(function(){$("#alldone").hide();}, 2000);
+        setTimeout(function(){$("#alldone").hide();}, 5000);
     }
 }
 

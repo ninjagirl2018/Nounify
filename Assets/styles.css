@@ -135,26 +135,30 @@ button:hover {
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -15px;
     margin-left: -200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 400px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.849);
-    color: gold;
-    font-size: 200%;
+    height: 25px;
+    background-color: rgb(98, 24, 102);
+    color: white;
+    font-size: 24px;
+    border: 1px solid white;
   }
 
   #trynexttime {
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -15px;
     margin-left: -200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 400px;
-    height: 30px;
-    background-color: black;
-    font-size: 200%;
-    color: red;
+    height: 25px;
+    background-color: rgb(98, 24, 102);
+    color: white;
+    font-size: 24px;
+    border: 1px solid white;
   }
 
   /*this response remind the user that they already finish all quizs produced, it will show together with the right answer response*/
@@ -163,12 +167,15 @@ button:hover {
     position: fixed;
     top: 30%;
     left: 50%;
-    margin-top: -15px;
     margin-left: -200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 400px;
-    height: 30px;
-    background-color: black;
-    font-size: 200%;
+    height: 25px;
+    background-color: rgb(98, 24, 102);
+    font-size: 24px;
+    border: 1px solid white;
+    color: white;
   }
 
 /*text input area that show after clicking the picture*/
@@ -180,10 +187,9 @@ button:hover {
     margin-left: auto;
     border: 3px solid white;
     border-radius: 4px;
-    font-family: 'Rokkitt', serif;
     font-size: 20pt;
     padding: 5px;
-    width: 460px;
+    width: 650px;
     height: 50px;
     color: white;
     background-color: transparent;
@@ -193,10 +199,13 @@ button:hover {
   #submit_answer {
     border: 3px solid white;
     border-radius: 4px;
-    font-family: 'Rokkitt', serif;
     font-size: 20pt;
     color: white;
     background-color: transparent;
+    height: 50px;
+    width: 200px;
+    margin-left: 28px;
+    margin-right: 0px;
   }
 
   /* Add animation (fade in the popup) */
@@ -209,6 +218,8 @@ button:hover {
     from {opacity: 0;}
     to {opacity:1 ;}
   }
+
+
 @media screen and (min-width: 400px) {
     h1 {   
         width: 90%; 
@@ -216,13 +227,40 @@ button:hover {
     }
 
     #text_input {
-        height: 500px;
+        height: 400px;
         width: 400px;
     }
 
     button {
         width: 420px;
     }
+
+    #answer{
+        margin-bottom: 10px;
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+        border: 3px solid white;
+        border-radius: 4px;
+        font-size: 20pt;
+        padding: 5px;
+        width: 275px;
+        height: 50px;
+        color: white;
+        background-color: transparent;
+      }
+
+      #submit_answer {
+        border: 3px solid white;
+        border-radius: 4px;
+        font-size: 20pt;
+        color: white;
+        background-color: transparent;
+        height: 50px;
+        width: 125px;
+        margin-left: 28px;
+        margin-right: 0px;
+      }
 }
 
 @media screen and (min-width: 550px) {
@@ -239,6 +277,33 @@ button:hover {
     button {
         width: 525px;
     }
+
+    #answer{
+        margin-bottom: 10px;
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+        border: 3px solid white;
+        border-radius: 4px;
+        font-size: 20pt;
+        padding: 5px;
+        width: 370px;
+        height: 50px;
+        color: white;
+        background-color: transparent;
+      }
+
+      #submit_answer {
+        border: 3px solid white;
+        border-radius: 4px;
+        font-size: 20pt;
+        color: white;
+        background-color: transparent;
+        height: 50px;
+        width: 120px;
+        margin-left: 30px;
+        margin-right: 0px;
+      }
 }
 
 @media screen and (min-width: 750px) {
@@ -255,6 +320,33 @@ button:hover {
     button {
         width: 675px;
     }
+
+    #answer{
+        margin-bottom: 10px;
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+        border: 3px solid white;
+        border-radius: 4px;
+        font-size: 20pt;
+        padding: 5px;
+        width: 500px;
+        height: 50px;
+        color: white;
+        background-color: transparent;
+      }
+
+      #submit_answer {
+        border: 3px solid white;
+        border-radius: 4px;
+        font-size: 20pt;
+        color: white;
+        background-color: transparent;
+        height: 50px;
+        width: 150px;
+        margin-left: 25px;
+        margin-right: 0px;
+      }
 }
 
 @media screen and (min-width: 900px) {
@@ -271,4 +363,30 @@ button:hover {
     button {
         width: 825px;
  }
+ #answer{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid white;
+    border-radius: 4px;
+    font-size: 20pt;
+    padding: 5px;
+    width: 600px;
+    height: 50px;
+    color: white;
+    background-color: transparent;
+  }
+
+  #submit_answer {
+    border: 3px solid white;
+    border-radius: 4px;
+    font-size: 20pt;
+    color: white;
+    background-color: transparent;
+    height: 50px;
+    width: 200px;
+    margin-left: 25px;
+    margin-right: 0px;
+  }
 }
