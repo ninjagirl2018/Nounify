@@ -13,14 +13,15 @@ $("#alldone").hide();
 
 
 $("#quiz").on("click", function () {
-    if ( $("#text_input").contenteditable == false){
-        $("#text_input").children().remove();
-        $("#text_input").text("Place your text here");
-        $("#text_input").attr("contenteditable", "true");
+    if ($("#updated_text").text() == true) {
+        var str =  $("#updated_text").text().trim();
+        $("#text_input").children("SPAN").remove();
     }
 
     else {
-        var str =  $("#text_input").text();
+        var str =  $("#text_input").text().trim();
+    }   
+    
         var words = str.split(" ");
         var allNouns = [];
         var wordsCount = words.length;
@@ -28,12 +29,12 @@ $("#quiz").on("click", function () {
 
         var counter = 0;
 
-        function processWord(word) {
+        function processWords(word) {
             var checkWord = stripPunctuation (word); 
             var promise = owlAPI.call(key, checkWord);
             promise.fail(function(){
                 counter++;
-                processWord(words[counter])
+                processWords(words[counter])
             })
             promise.then(function(data) {
                 var isNoun = false;
@@ -50,7 +51,7 @@ $("#quiz").on("click", function () {
                     counter++;
                     console.log(counter);
                     console.log(words[counter]);
-                    processWord(words[counter])}
+                    processWords(words[counter])}
                 else {
                     console.log(allNouns);
                     replaceNoun(words, allNouns);
@@ -67,8 +68,7 @@ $("#quiz").on("click", function () {
             $("#progressBar").css("display", "none");
         }
     }
-    processWord(words[counter]);
-    }
+    processWords(words[counter]);
 });
 
     /* create for each loop or other way to compare hidden nouns with the answer input by user */    
@@ -79,16 +79,17 @@ function requestAnswer(object) {
     $("#quiz_input").show();
     $("#quiz_input").append('<input type="text" id="answer"></input><input type="submit" id="submit_answer">');
     $("#submit_answer").click(function() {
-        processAnswer(object);
+    processAnswer(object);
     })
-
 }
+
 
 function processAnswer(object) {
     console.log(object.parent().attr("id"));
     console.log($("#answer").val());
     if ($("#answer").val() === object.parent().attr("id")) {
         $("#goodjob").show();
+        //Ada - fix the counter on this line once the styling is done
         setTimeout(function(){$("#goodjob").hide();}, 2000);
         object.parent().append(`${object.parent().attr("id")} `);
         object.remove();
@@ -97,13 +98,14 @@ function processAnswer(object) {
     }
     else {
         $("#trynexttime").show();
+        //Ada - fix the counter on this line
         setTimeout(function(){$("#trynexttime").hide();}, 2000);
 
 
     }
     if (!($(".quiz_pic").length)) {
         $("#alldone").show();
-        setTimeout(function(){$("#alldone").hide();}, 2000);
+        setTimeout(function(){$("#alldone").hide();}, 5000);
     }
 }
 
