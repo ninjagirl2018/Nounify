@@ -1,14 +1,15 @@
 # Nounify
 
 
-Nounify is a simple application which will help parents read and visually enrich stories with their children.
+Nounify is a simple application which will help parents and educattors visually enrich the story experience with their children and students.
 
 The main UI contains the text input and three buttons: Nounify, Quizify and Reset. 
 
-The user will insert the text to the input and click Start. After this the page will call an API to figure out which words in the text can be treated as nouns. The code will then highlight all such words in the text. 
-If the user clicks the highlighted word, the code will call another API to get a random image for the given noun and display it in a popup above the word. 
+The user will insert the text to the input and click Start. After this the page will call an API which will parse out which words in the text can be treated as nouns. The code will then highlight all such words in the text. 
 
-The user can clear up the text and all the images by clicking Reset button.
+If the user clicks the highlighted word, the code will call another API to pull in a random image for the given noun and display it in a popup above the word. 
+
+The user can then clear the text and all the images by clicking Reset button.
 
 ![screenshot](./Assets/img/Screenshot.PNG)
 
